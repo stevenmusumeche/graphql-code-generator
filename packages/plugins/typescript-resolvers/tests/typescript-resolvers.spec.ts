@@ -125,9 +125,9 @@ describe('Resolvers', () => {
             fieldTest?: FieldTestResolver<Maybe<string>, TypeParent, Context>;
           }
     
-          export type FieldTestResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, FieldTestFieldArgs>;
+          export type FieldTestResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, FieldTestArgs>;
           
-          export interface FieldTestFieldArgs {
+          export interface FieldTestArgs {
             last: number;
             sort?: Maybe<string>;
           }
@@ -193,11 +193,11 @@ describe('Resolvers', () => {
     );
 
     expect(content).toBeSimilarStringTo(`
-        export interface QueryTypeResolvers<Context = {}, TypeParent = {}> {
-          fieldTest?: QueryFieldTestFieldResolver<Maybe<string>, TypeParent, Context>;
+        export interface QueryResolvers<Context = {}, TypeParent = {}> {
+          fieldTest?: QueryFieldTestResolver<Maybe<string>, TypeParent, Context>;
         }
 
-        export type QueryFieldTestFieldResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context>;
+        export type QueryFieldTestResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context>;
       `);
   });
 
@@ -311,10 +311,10 @@ describe('Resolvers', () => {
     );
 
     expect(content).toBeSimilarStringTo(`
-      export type SnakeCaseRootQueryResolver<R = Maybe<SnakeCaseResult>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, SnakeCaseRootQueryFieldArgs>;
+      export type SnakeCaseRootQueryResolver<R = Maybe<SnakeCaseResult>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, SnakeCaseRootQueryArgs>;
       `);
     expect(content).toBeSimilarStringTo(`
-      export interface SnakeCaseRootQueryFieldArgs {
+      export interface SnakeCaseRootQueryArgs {
         arg?: Maybe<SnakeCaseArg>;
       }
     `);
@@ -441,31 +441,31 @@ describe('Resolvers', () => {
     );
 
     expect(content).toBeSimilarStringTo(`
-      export interface QueryTypeResolvers<Context = {}, TypeParent = {}> {
-        post?: QueryPostFieldResolver<Maybe<Post>, TypeParent, Context>;
+      export interface QueryResolvers<Context = {}, TypeParent = {}> {
+        post?: QueryPostResolver<Maybe<Post>, TypeParent, Context>;
       }
 
-      export type QueryPostFieldResolver<R = Maybe<Post>, Parent = {}, Context = {}> = Resolver<R, Parent, Context>;
+      export type QueryPostResolver<R = Maybe<Post>, Parent = {}, Context = {}> = Resolver<R, Parent, Context>;
     `);
 
     expect(content).toBeSimilarStringTo(`
-      export interface PostTypeResolvers<Context = {}, TypeParent = Post> {
-        id?: PostIdFieldResolver<Maybe<string>, TypeParent, Context>;
-        author?: PostAuthorFieldResolver<Maybe<User>, TypeParent, Context>;
+      export interface PostResolvers<Context = {}, TypeParent = Post> {
+        id?: PostIdResolver<Maybe<string>, TypeParent, Context>;
+        author?: PostAuthorResolver<Maybe<User>, TypeParent, Context>;
       }
 
-      export type PostIdFieldResolver<R = Maybe<string>, Parent = Post, Context = {}> = Resolver<R, Parent, Context>;
-      export type PostAuthorFieldResolver<R = Maybe<User>, Parent = Post, Context = {}> = Resolver<R, Parent, Context>;
+      export type PostIdResolver<R = Maybe<string>, Parent = Post, Context = {}> = Resolver<R, Parent, Context>;
+      export type PostAuthorResolver<R = Maybe<User>, Parent = Post, Context = {}> = Resolver<R, Parent, Context>;
     `);
 
     expect(content).toBeSimilarStringTo(`
-      export interface UserTypeResolvers<Context = {}, TypeParent = User> {
-        id?: UserIdFieldResolver<Maybe<string>, TypeParent, Context>;
-        name?: UserNameFieldResolver<Maybe<string>, TypeParent, Context>;
+      export interface UserResolvers<Context = {}, TypeParent = User> {
+        id?: UserIdResolver<Maybe<string>, TypeParent, Context>;
+        name?: UserNameResolver<Maybe<string>, TypeParent, Context>;
       }
 
-      export type UserIdFieldResolver<R = Maybe<string>, Parent = User, Context = {}> = Resolver<R, Parent, Context>;
-      export type UserNameFieldResolver<R = Maybe<string>, Parent = User, Context = {}> = Resolver<R, Parent, Context>;
+      export type UserIdResolver<R = Maybe<string>, Parent = User, Context = {}> = Resolver<R, Parent, Context>;
+      export type UserNameResolver<R = Maybe<string>, Parent = User, Context = {}> = Resolver<R, Parent, Context>;
     `);
   });
 
@@ -781,9 +781,9 @@ describe('Resolvers', () => {
           upvotePost?: UpvotePostResolver<Maybe<UpvotePostPayload>, TypeParent, Context>;
         }
         
-        export type UpvotePostResolver<R = Maybe<UpvotePostPayload>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, UpvotePostFieldArgs>;
+        export type UpvotePostResolver<R = Maybe<UpvotePostPayload>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, UpvotePostArgs>;
         
-        export interface UpvotePostFieldArgs {
+        export interface UpvotePostArgs {
           id: string;
         }
       }
@@ -828,13 +828,13 @@ describe('Resolvers', () => {
     );
 
     expect(content).toBeSimilarStringTo(`
-      export interface QueryTypeResolvers<Context = {}, TypeParent = {}> {
-        fieldTest?: QueryFieldTestFieldResolver<Maybe<string>, TypeParent, Context>;
+      export interface QueryResolvers<Context = {}, TypeParent = {}> {
+        fieldTest?: QueryFieldTestResolver<Maybe<string>, TypeParent, Context>;
       }
     
-      export type QueryFieldTestFieldResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, QueryFieldTestFieldArgs>;
+      export type QueryFieldTestResolver<R = Maybe<string>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, QueryFieldTestArgs>;
           
-      export interface QueryFieldTestFieldArgs {
+      export interface QueryFieldTestArgs {
         last: number;
         sort?: Maybe<string>;
       }
@@ -953,11 +953,11 @@ describe('Resolvers', () => {
     );
 
     expect(content).toBeSimilarStringTo(`
-      export interface EntryUnionResolvers {
-        __resolveType: EntryUnionResolveType;
+      export interface EntryResolvers {
+        __resolveType: EntryResolveType;
       }
       
-      export type EntryUnionResolveType<R = 'Post' | 'Comment', Parent = Post | Comment, Context = {}> = TypeResolveFn<R, Parent, Context>;
+      export type EntryResolveType<R = 'Post' | 'Comment', Parent = Post | Comment, Context = {}> = TypeResolveFn<R, Parent, Context>;
     `);
   });
 
@@ -1189,9 +1189,9 @@ describe('Resolvers', () => {
 
     expect(content).toBeSimilarStringTo(`
       export interface IResolvers {
-        Query?: QueryTypeResolvers;
-        Post?: PostTypeResolvers;
-        User?: UserTypeResolvers;
+        Query?: QueryResolvers;
+        Post?: PostResolvers;
+        User?: UserResolvers;
         Date?: GraphQLScalarType;
       }
     `);
@@ -1202,6 +1202,124 @@ describe('Resolvers', () => {
         skip?: SkipDirectiveResolver<Result>;
         include?: IncludeDirectiveResolver<Result>;
         deprecated?: DeprecatedDirectiveResolver<Result>;
+      }
+    `);
+  });
+
+  it('should handle resolverPrefix option when noNamespaces is disabled', async () => {
+    const testSchema = makeExecutableSchema({
+      typeDefs: `
+        directive @modify(limit: Int) on FIELD_DEFINITION
+
+        scalar Date
+
+        type Query {
+          post(id: Int!): Post
+        }
+
+        type Post {
+          id: String
+          author: User
+        }
+
+        type User {
+          id: String
+          name: String
+        }
+        
+        schema {
+          query: Query
+        }
+      `
+    });
+
+    const content = await plugin(
+      testSchema,
+      [],
+      { resolverPrefix: true, scalars: { Date: 'Date' } },
+      {
+        outputFile: 'graphql.ts'
+      }
+    );
+
+    expect(content).toBeSimilarStringTo(`
+      export interface IResolvers {
+        Query?: QueryTypeResolvers.Resolvers;
+        Post?: PostTypeResolvers.Resolvers;
+        User?: UserTypeResolvers.Resolvers;
+        Date?: GraphQLScalarType;
+      }
+    `);
+
+    expect(content).toBeSimilarStringTo(`
+      export namespace QueryTypeResolvers {
+        export interface Resolvers<Context = {}, TypeParent = {}> {
+          post?: PostFieldResolver<Maybe<Post>, TypeParent, Context>;
+        }
+
+        export type PostFieldResolver<R = Maybe<Post>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, PostFieldArgs>;
+        
+        export interface PostFieldArgs {
+          id: number;
+        }
+      }
+    `);
+  });
+
+  it('should handle resolverPrefix option with noNamespaces enabled', async () => {
+    const testSchema = makeExecutableSchema({
+      typeDefs: `
+        directive @modify(limit: Int) on FIELD_DEFINITION
+
+        scalar Date
+
+        type Query {
+          post(id: Int!): Post
+        }
+
+        type Post {
+          id: String
+          author: User
+        }
+
+        type User {
+          id: String
+          name: String
+        }
+        
+        schema {
+          query: Query
+        }
+      `
+    });
+
+    const content = await plugin(
+      testSchema,
+      [],
+      { noNamespaces: true, resolverPrefix: true, scalars: { Date: 'Date' } },
+      {
+        outputFile: 'graphql.ts'
+      }
+    );
+
+    expect(content).toBeSimilarStringTo(`
+      export interface IResolvers {
+        Query?: QueryTypeResolvers;
+        Post?: PostTypeResolvers;
+        User?: UserTypeResolvers;
+        Date?: GraphQLScalarType;
+      }
+    `);
+
+    expect(content).toBeSimilarStringTo(`
+      export interface QueryTypeResolvers<Context = {}, TypeParent = {}> {
+        post?: QueryPostFieldResolver<Maybe<Post>, TypeParent, Context>;
+      }
+
+      export type QueryPostFieldResolver<R = Maybe<Post>, Parent = {}, Context = {}> = Resolver<R, Parent, Context, QueryPostFieldArgs>;
+        
+      export interface QueryPostFieldArgs {
+        id: number;
       }
     `);
   });

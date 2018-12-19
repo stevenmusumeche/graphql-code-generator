@@ -14,6 +14,7 @@ import { getParentType, getParentTypes } from './parent-type';
 
 export interface TypeScriptServerResolversConfig extends TypeScriptCommonConfig {
   noNamespaces?: boolean;
+  resolverPrefix?: boolean;
   contextType?: string;
   mappers?: { [name: string]: string };
   defaultMapper?: string;

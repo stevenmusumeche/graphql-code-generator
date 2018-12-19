@@ -1,11 +1,11 @@
 {{ toComment description }}
 {{#unless @root.config.noNamespaces}}
-export namespace {{ convert name }}Resolvers {
+export namespace {{ convert name }}{{#if @root.config.resolverPrefix}}{{entityType}}{{/if}}Resolvers {
 {{/unless}}
-  export interface {{#if @root.config.noNamespaces}}{{ convert name }}{{entityType}}{{/if}}Resolvers {
-    __resolveType: {{#if @root.config.noNamespaces}}{{ convert name }}{{entityType}}{{/if}}ResolveType;
+  export interface {{#if @root.config.noNamespaces}}{{ convert name }}{{#if @root.config.resolverPrefix}}{{entityType}}{{/if}}{{/if}}Resolvers {
+    __resolveType: {{#if @root.config.noNamespaces}}{{ convert name }}{{#if @root.config.resolverPrefix}}{{entityType}}{{/if}}{{/if}}ResolveType;
   }
-  export type {{#if @root.config.noNamespaces}}{{ convert name }}{{entityType}}{{/if}}ResolveType<R = {{{ getTypenames this }}}, Parent = {{{ getParentTypes this }}}, Context = {{{ getContext }}}> = TypeResolveFn<R, Parent, Context>;
+  export type {{#if @root.config.noNamespaces}}{{ convert name }}{{#if @root.config.resolverPrefix}}{{entityType}}{{/if}}{{/if}}ResolveType<R = {{{ getTypenames this }}}, Parent = {{{ getParentTypes this }}}, Context = {{{ getContext }}}> = TypeResolveFn<R, Parent, Context>;
   
 {{#unless @root.config.noNamespaces}}
 }
