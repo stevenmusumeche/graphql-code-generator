@@ -32,7 +32,7 @@ export const getFieldType = convert => (field: Field, options: Handlebars.Helper
 
 export const getFieldResolverName = convert => (name: string, options: Handlebars.HelperOptions) => {
   const config = options.data.root.config || {};
-  return `${convert(name)}${config.resolverPrefix ? 'Field' : ''}Resolver`;
+  return `${convert(name)}${config.useResolverType ? 'Field' : ''}Resolver`;
 };
 
 export const getFieldResolver = convert => (field: Field, type: Type, options: Handlebars.HelperOptions) => {
@@ -56,7 +56,7 @@ export const getFieldResolver = convert => (field: Field, type: Type, options: H
 
   if (field.hasArguments) {
     const prefix = config.noNamespaces ? convert(type.name) : '';
-    generics.push(`${prefix}${convert(field.name)}${config.resolverPrefix ? 'Field' : ''}Args`);
+    generics.push(`${prefix}${convert(field.name)}${config.useResolverType ? 'Field' : ''}Args`);
   }
 
   return new SafeString(`${resolver}<${generics.join(', ')}>`);

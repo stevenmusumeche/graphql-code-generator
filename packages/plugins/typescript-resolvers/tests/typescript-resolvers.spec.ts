@@ -1206,7 +1206,7 @@ describe('Resolvers', () => {
     `);
   });
 
-  it('should handle resolverPrefix option when noNamespaces is disabled', async () => {
+  it('should handle useResolverType option when noNamespaces is disabled', async () => {
     const testSchema = makeExecutableSchema({
       typeDefs: `
         directive @modify(limit: Int) on FIELD_DEFINITION
@@ -1236,7 +1236,7 @@ describe('Resolvers', () => {
     const content = await plugin(
       testSchema,
       [],
-      { resolverPrefix: true, scalars: { Date: 'Date' } },
+      { useResolverType: true, scalars: { Date: 'Date' } },
       {
         outputFile: 'graphql.ts'
       }
@@ -1266,7 +1266,7 @@ describe('Resolvers', () => {
     `);
   });
 
-  it('should handle resolverPrefix option with noNamespaces enabled', async () => {
+  it('should handle useResolverType option with noNamespaces enabled', async () => {
     const testSchema = makeExecutableSchema({
       typeDefs: `
         directive @modify(limit: Int) on FIELD_DEFINITION
@@ -1296,7 +1296,7 @@ describe('Resolvers', () => {
     const content = await plugin(
       testSchema,
       [],
-      { noNamespaces: true, resolverPrefix: true, scalars: { Date: 'Date' } },
+      { noNamespaces: true, useResolverType: true, scalars: { Date: 'Date' } },
       {
         outputFile: 'graphql.ts'
       }
