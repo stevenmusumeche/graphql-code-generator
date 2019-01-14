@@ -1,4 +1,4 @@
-# import User from './schema.graphql'
+# import User from './user-for-import.graphql'
 
 type Query {
   allUsers: [User]!
