@@ -68,6 +68,13 @@ describe('Apollo Angular', () => {
 
       expect(content).toContain(`import { DocumentNode } from 'graphql';`);
       expect(content).not.toBeSimilarStringTo(`import gql from 'graphql-tag';`);
+
+      // document
+      expect(content).not.toContain('export const TestDocument = gql`');
+      expect(content).toContain('export const TestDocument: DocumentNode = {"kind":');
+
+      console['log'](content);
+
       await validateTypeScript(content, schema, docs, {});
     });
 
@@ -83,6 +90,8 @@ describe('Apollo Angular', () => {
       );
 
       expect(content).toContain(`import { gql } from 'graphql.macro';`);
+      expect(content).toContain('export const TestDocument = gql`');
+
       await validateTypeScript(content, schema, docs, {});
     });
 
